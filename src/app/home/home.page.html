@@ -1,13 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="container">
-    <ion-button (click)="saludar()">Saludar</ion-button>
-  </div>
+<ion-content >
+  <swiper-container 
+  pagination="true" 
+  loop="true" 
+  slides-per-view="1">
+    <swiper-slide *ngFor="let genre of genres">
+      <div class="slide-content">
+        <h2> {{ genre.title }} </h2>
+        <img [src]="genre.image" [alt]="genre.title">
+        <p>{{ genre.description }}</p>
+      </div>
+    </swiper-slide>
+  </swiper-container>
 </ion-content>
