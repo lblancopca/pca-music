@@ -21,3 +21,86 @@
   margin: 12px 0 0;
   text-align: justify;
 }
+
+.card {
+  padding: var(--espaciado-base);
+  background-color: var(--color-claro);
+}
+
+
+.bg-card-test {
+  background: #8f258a;
+  color: white;
+}
+
+
+
+//Neo oscuro
+.theme-neon swiper-container {
+  background: #0f0f0f;
+  padding: 1rem;
+}
+
+.theme-neon .slide-content {
+  background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+  border: 1px solid #00ffe7;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  color: #00ffe7;
+  box-shadow: 0 0 20px #00ffe7;
+}
+
+.theme-neon .slide-content h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #ff00cc;
+}
+
+.theme-neon .slide-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 2px solid #ff00cc;
+  margin-bottom: 1rem;
+}
+
+.theme-neon .slide-content p {
+  font-size: 1rem;
+  color: #d0fdfd;
+}
+
+
+Minimalista claro
+.theme-minimal swiper-container {
+  background: #f8f9fa;
+  padding: 1rem;
+}
+
+.theme-minimal .slide-content {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.theme-minimal .slide-content h2 {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.theme-minimal .slide-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.theme-minimal .slide-content p {
+  font-size: 0.95rem;
+  color: #555;
+}

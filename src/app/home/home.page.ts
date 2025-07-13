@@ -18,8 +18,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 export class HomePage {
   // variables, datos
+  currentTheme: string = 'theme-minimal';
 
   //Tarea: agregar informacion de minimo 3 sliders
+  //Cambiar medante click de un boton el tema de los slides
   genres = [
     {
       title: 'Pop',
@@ -37,8 +39,23 @@ export class HomePage {
       description: 'Jazz is a music genre that originated in the African-American communities of New Orleans, United States, in the late 19th and early 20th centuries.',
     }
   ]
-  constructor() {}
 
+
+
+  toggleTheme() {
+    this.currentTheme = this.currentTheme === 'theme-minimal' ? 'theme-neon' : 'theme-minimal';
+  }
+
+
+
+  constructor() {}
   // funciones, métodos
+  colorClaro = 'var(--color-claro)';
+  colorOscuro = 'var(--color-oscuro)';
+  colorActual = this.colorClaro;
+
+  cambiarColor() {
+    this.colorActual = this.colorActual === this.colorClaro ? this.colorOscuro : this.colorClaro;
+  }
  
 }

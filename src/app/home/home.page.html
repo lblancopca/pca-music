@@ -3,14 +3,23 @@
     <ion-title>
       Home
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        Cambiar Tema
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
   <swiper-container 
-  pagination="true" 
-  loop="true" 
-  slides-per-view="1">
+    pagination="true" 
+    loop="true" 
+    slides-per-view="1"
+   [ngClass]="currentTheme">
+
     <swiper-slide *ngFor="let genre of genres">
       <div class="slide-content">
         <h2> {{ genre.title }} </h2>
@@ -19,4 +28,23 @@
       </div>
     </swiper-slide>
   </swiper-container>
+
+
+  <div [style.background-color]="colorActual">
+    Hola mundo
+  </div>
+ 
+  <ion-button (click)="cambiarColor()">Cambiar tema</ion-button>
+
+  <ion-card class="bg-card-test">
+    <ion-card-header>
+      <ion-card-title>Card Title</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
