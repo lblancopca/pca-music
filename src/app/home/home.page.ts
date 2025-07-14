@@ -1,11 +1,12 @@
 //import { Component } from '@angular/core';
 //import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
-export class HomePage {
+export class HomePage implements OnInit {
   // variables, datos
-  currentTheme: string = 'theme-minimal';
-
   //Tarea: agregar informacion de minimo 3 sliders
   //Cambiar medante click de un boton el tema de los slides
   genres = [
@@ -42,13 +41,7 @@ export class HomePage {
 
 
 
-  toggleTheme() {
-    this.currentTheme = this.currentTheme === 'theme-minimal' ? 'theme-neon' : 'theme-minimal';
-  }
-
-
-
-  constructor() {}
+  constructor(private storageService: StorageService) {}
   // funciones, métodos
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
@@ -57,5 +50,27 @@ export class HomePage {
   cambiarColor() {
     this.colorActual = this.colorActual === this.colorClaro ? this.colorOscuro : this.colorClaro;
   }
- 
+
+
+  async ngOnInit() {
+    await this.loadStorageData();
+  }
+
+  temaMinimo = 'theme-minimal';
+  temaNeon = 'theme-neon';
+  temaActual: string = this.temaMinimo;
+  async toggleTheme() {
+    this.temaActual = this.temaActual === this.temaMinimo ? this.temaNeon : this.temaMinimo;
+    await this.storageService.set('theme', this.temaActual);
+    console.log('Tema guardado:', this.temaActual);
+  }
+
+  async loadStorageData() {
+    const saveTheme = await this.storageService.get('theme');
+    if (saveTheme) {
+      this.temaActual = saveTheme;
+      console.log('Tema cargado:', this.temaActual);
+    }
+  }
+
 }

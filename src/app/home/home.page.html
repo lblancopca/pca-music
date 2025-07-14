@@ -18,7 +18,7 @@
     pagination="true" 
     loop="true" 
     slides-per-view="1"
-   [ngClass]="currentTheme">
+   [ngClass]="temaActual">
 
     <swiper-slide *ngFor="let genre of genres">
       <div class="slide-content">
@@ -46,5 +46,14 @@
       Here's a small text description for the card content. Nothing more, nothing less.
     </ion-card-content>
   </ion-card>
+
+
+
+  <div>
+    <h3>Demo ionic Storage</h3>
+    <div [style.background-color]="colorActual">
+      <p>Tema actual: {{ colorActual === colorOscuro ? 'Oscuro' : 'Claro' }}</p>
+    </div>
+  </div>
 
 </ion-content>
