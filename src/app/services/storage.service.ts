@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root'
 })
 export class StorageService {
+  setData(arg0: string, arg1: boolean) {
+    throw new Error('Method not implemented.');
+  }
   private _storage: Storage | null = null;
   constructor(private storage: Storage) {
 

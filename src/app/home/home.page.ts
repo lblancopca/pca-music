@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
 
 
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService, private router: Router) {}
   // funciones, métodos
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
@@ -73,4 +73,10 @@ export class HomePage implements OnInit {
     }
   }
 
+  // crear una funcion para ir a ver el intro
+  goToIntro() {
+    console.log('Navigating to intro page');
+    // Aquí se puede implementar la lógica para navegar a la página de introducción
+    this.router.navigate(['/intro']);
+  }
 }
