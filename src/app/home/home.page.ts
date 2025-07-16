@@ -54,6 +54,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     await this.loadStorageData();
+    this.simularCargaDatos();  // Simula la carga de datos al iniciar la página
   }
 
   temaMinimo = 'theme-minimal';
@@ -72,6 +73,26 @@ export class HomePage implements OnInit {
       console.log('Tema cargado:', this.temaActual);
     }
   }
+
+//Promesas
+  async simularCargaDatos() {
+    console.log('Simulando carga de datos...');
+    // Simular una carga de datos con un retraso
+    const data = await this.obtenerDatosSimulados();
+    console.log('Datos simulados:', data);
+  }
+
+
+  obtenerDatosSimulados() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(['Pop', 'Rock', 'Jazz']);
+        //reject('Error al cargar los datos');
+      }, 2000); // Simula un retraso de 2 segundos
+    });
+  }
+//Fin promesas
+
 
   // crear una funcion para ir a ver el intro
   goToIntro() {
