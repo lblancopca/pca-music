@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { introGuard } from './guards/intro.guard';
 
+// agregar el guar de login
+
 export const routes: Routes = [
   {
     path: 'home',
@@ -14,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'intro',
     loadComponent: () => import('./intro/intro.page').then( m => m.IntroPage)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
 ];
