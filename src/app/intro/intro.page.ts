@@ -21,7 +21,7 @@ export class IntroPage implements OnInit {
   //organizar intro con slides dinamicos (Minimo 4)
   //utilizas variables de clases
   // utilizar css utilities
-  //utilizar un home que nos leve al home
+  //utilizar un boton que nos leve al home
 
 
   constructor(private router: Router, private storageService: StorageService) { }

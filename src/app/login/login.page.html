@@ -16,7 +16,7 @@
     </ion-item>
     
     <!--Tarea: Darle estilo a como muetro el mensaje-->
-    <div>
+    <div class="form-error-messages">
       <ng-container *ngFor="let validation of validation_message.email">
         <div *ngIf="(
             loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty
