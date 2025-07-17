@@ -12,7 +12,6 @@ import { StorageService } from '../services/storage.service';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  //imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent],
   imports: [ IonicModule, CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

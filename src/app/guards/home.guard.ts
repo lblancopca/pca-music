@@ -7,20 +7,17 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 
-export class introGuard implements CanActivate {
+export class homeGuard implements CanActivate {
   constructor(private storageService: StorageService, private router: Router) {}
+  // obtener del storage si ya se ha visto la intro y devuelve true o false
   
   async canActivate() {
-    
-    const introSeen = this.storageService.get('introSeen');
-    // Si no se ha visto la introducción, redirigir a la página de intro
-    if (await introSeen === null || await introSeen === undefined) {
-      this.router.navigate(['/intro']);
+    const login = this.storageService.get('login');
+    if (await login === null || await login === undefined || await login === false) {
+      this.router.navigate(['/login']);
       return false;
     }
 
-    return await introSeen === 'true' || await introSeen === true;
-
+    return  await login === true;
   }
-
 };

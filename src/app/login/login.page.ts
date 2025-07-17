@@ -14,7 +14,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginPage implements OnInit {
   //Tarea: crear un nuevo guard para cuando intente entrar al home validar si estoy logueado
-  //nota: 
+  
   loginForm: FormGroup;
 
   errorMessage: string = "";
