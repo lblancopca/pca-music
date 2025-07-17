@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 export class introGuard implements CanActivate {
   constructor(private storageService: StorageService, private router: Router) {}
+  
   async canActivate() {
     // obtener del storage si ya se ha visto la intro y devuelve true o false
     const introSeen = this.storageService.get('introSeen');

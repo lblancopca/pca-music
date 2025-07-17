@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Home
+      My MusicApp
     </ion-title>
 
     <ion-buttons slot="end">
@@ -29,44 +29,6 @@
     </swiper-slide>
   </swiper-container>
 
-
-  <div [style.background-color]="colorActual">
-    Hola mundo
-  </div>
- 
-  <ion-button (click)="cambiarColor()">Cambiar tema</ion-button>
-
-  <ion-card class="bg-card-test">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
-  </ion-card>
-
-
-
-  <div>
-    <h3>Demo ionic Storage</h3>
-    <div [style.background-color]="colorActual">
-      <p>Tema actual: {{ colorActual === colorOscuro ? 'Oscuro' : 'Claro' }}</p>
-    </div>
-  </div>
-
-
-  
   <ion-button (click)="goToIntro()">Ir a Intro</ion-button>
-
-
-
-  <div>
-    <p class="ion-text-center ion-text-uppercase">Texto centrado</p>
-    <p class="ion-text-left ion-text-lowercase" >Texto a la izquierda 2</p>
-    <p class="ion-text-right ion-text-capitalize">Texto a la derecha 3</p>
-    <p class="ion-hide">Hola no me veo</p>
-  </div>
 
 </ion-content>

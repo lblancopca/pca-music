@@ -2,11 +2,53 @@
 // http://ionicframework.com/docs/theming/
 
 :root {
-  --color-acento: #007bff;
-  --color-claro: #555758;
-    --color-oscuro: #000000;
-  --espaciado-base: 1rem;
-  --espaciado-grande: 2rem;
+  /* TEMA NEON */
+/* Colores principales neon */
+  --ion-color-primary: #00ffe7;    // Verde-agua brillante (borde, detalles principales)
+  --ion-color-secondary: #ff00cc;  // Rosa neón (títulos, highlights)
+  --ion-color-tertiary: #00bfff;   // Azul brillante alternativo
+
+  /* Fondo y neutros oscuros */
+  --ion-color-light: #2a2a2a;      // Fondo de tarjetas
+  --ion-color-medium: #1f1f1f;     // Fondo medio (contenedores)
+  --ion-color-dark: #0f0f0f;       // Fondo base
+
+  /* Texto */
+  --ion-text-color: #d0fdfd;       // Texto principal neón suave
+  --ion-text-color-contrast: #ffffff;
+
+  /* Sombra y borde */
+  --neon-border-color: #00ffe7;
+  --neon-shadow-color: 0 0 20px #00ffe7;
+
+  /* Fondo general */
+  --background-color: #0f0f0f;
+
+
+
+
+  /* TEMA claro */
+  /* Principales */
+  --ion-color-primary: #007bff;     /* Azul moderno (botones, enlaces) */
+  --ion-color-secondary: #6c757d;   /* Gris neutro (textos secundarios) */
+  --ion-color-tertiary: #ff4081;    /* Rosa vibrante (detalles musicales) */
+
+  /* Neutros */
+  --ion-color-light: #f8f9fa;       /* Fondo claro general */
+  --ion-color-medium: #e0e0e0;      /* Bordes, líneas suaves */
+  --ion-color-dark: #222;           /* Títulos principales */
+
+  /* Texto */
+  --ion-text-color: #333;           /* Texto normal */
+  --ion-text-color-muted: #555;     /* Texto secundario */
+
+  /* Fondo */
+  --background-color: #ffffff;      /* Cartas, sliders */
+  --slide-background: #f8f9fa;
+
+  /* Otros */
+  --shadow-color: rgba(0, 0, 0, 0.05);  /* Sombra sutil */
+  --border-color: #e0e0e0;             /* Bordes en tarjetas */
 }
 
 

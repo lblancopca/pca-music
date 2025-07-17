@@ -1,15 +1,72 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>intro</ion-title>
+<!---
+
+<ion-header >
+ <ion-button fill="clear" class="skip-button" (click)="goback()">Omitir intro</ion-button>
+</ion-header>
+-->
+
+<ion-header translucent>
+  <ion-toolbar color="light" class="onboarding-toolbar">
+    <ion-buttons slot="end">
+      <ion-button fill="clear" class="skip-button" (click)="goback()">Omitir intro</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Page Intro</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-button (click)="goback()">Volver a Home</ion-button>
+
+<ion-content>
+  
+    
+
+  <div class="theme-minimal">
+    <swiper-container 
+      pagination="true" 
+      loop="true" 
+      slides-per-view="1">
+
+      <swiper-slide>
+        <div class="slide-content">
+          <img src="https://ruizhealytimes.com/wp-content/uploads/2015/07/musica.jpg" alt="">
+          <h2>🎵 Bienvenido a My MusicApp</h2>
+          <p>Explora millones de canciones, crea playlists y descubre nueva música todos los días.</p>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="slide-content">
+          <img src="https://www.enter.co/wp-content/uploads/2015/04/10835320_10152896701333798_4831114050690848769_o-660x432.jpg" alt="">
+          <h2>🔍 Descubre música nueva</h2>
+          <p>Personalizamos recomendaciones según tus gustos. ¡Siempre hay algo nuevo por escuchar!</p>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="slide-content">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWoXGmnFNyQ_dUFpdm04_m5-qajedKHAJA6A&s" alt="">
+          <h2>📁 Crea y comparte playlists</h2>
+          <p>Arma tus propias listas de reproducción y compártelas con tus amigos o el mundo.</p>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="slide-content">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYTk0XFFioMPbXQKcwva3A8nE6YOolaEDwpg&s" alt="">
+          <h2>📲 Escucha sin conexión</h2>
+          <p>Descarga tus canciones favoritas y escúchalas donde quieras, sin usar tus datos.</p>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="slide-content">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSetXIHVdFCocynS7yTzu_rHDgy82XMq_bQvw&s" alt="">
+          <h2>🚀 ¡Estás listo para empezar!</h2>
+          <p>Presiona “Comenzar” y sumérgete en tu experiencia musical.</p>
+          <ion-button expand="block" (click)="startApp()" color="primary">Comenzar</ion-button>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+
 </ion-content>

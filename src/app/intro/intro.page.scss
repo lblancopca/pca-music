@@ -1,0 +1,78 @@
+
+
+.onboarding-toolbar {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-dark);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 56px;
+}
+
+.skip-button {
+  font-weight: 500;
+  color: var(--ion-color-primary);
+  font-size: 0.95rem;
+  text-transform: none;
+  margin-right: 0.5rem;
+}
+
+
+
+/* Intro Page Styles */
+  .theme-minimal swiper-container {
+  background: var(--ion-color-light);
+  padding: 1rem;
+  height: 100vh;
+}
+
+.theme-minimal .slide-content {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--ion-text-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90%;
+}
+
+.theme-minimal .slide-content h2 {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.5rem;
+  color: var(--ion-color-dark);
+  margin-bottom: 1rem;
+}
+
+.theme-minimal .slide-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.theme-minimal .slide-content p {
+  font-size: 0.95rem;
+  color: var(--ion-text-color-muted);
+}
+
+/* Encabezado */
+.onboarding-toolbar {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-dark);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.toolbar-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Botón Omitir */
+.skip-button {
+  font-weight: 500;
+  color: var( --ion-color-primary);
+  font-size: 0.95rem;
+  text-transform: none;
+}

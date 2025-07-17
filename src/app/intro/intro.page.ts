@@ -5,12 +5,15 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service'
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class IntroPage implements OnInit {
 
@@ -28,15 +31,19 @@ export class IntroPage implements OnInit {
   }
 
   async loadStorageData() {
-    // guardar que ya se ha visto la introducción
+    // guardar que ya se ha visto la intro
     await this.storageService.set('introSeen', true);
     console.log('Pagina intro visitada');
+  }
+  
+  startApp(){
+    console.log('Iniciar la aplicación');
+    this.router.navigate(['/home']);
   }
 
 
   goback() {
-    // Logic to navigate back to the home page
-    console.log('Navigating back to home');
+    console.log('ir a pagina home home');
     this.router.navigate(['/home']);  
   }
 
