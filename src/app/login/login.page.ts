@@ -75,7 +75,7 @@ validation: any;
     console.log(credentials);
     this.authService.loginUser(credentials).then(res => {
       this.errorMessage = "";
-      this.navCtrl.navigateForward("/home")
+      this.navCtrl.navigateForward("/menu/home")
     }).catch(error =>{
       this.errorMessage = error;
     })
