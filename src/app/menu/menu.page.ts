@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 //import { IonContent, IonHeader, IonTitle, IonToolbar, IonSplitPane } from '@ionic/angular/standalone';
 import { IonicModule } from "@ionic/angular";
 import { Router } from '@angular/router';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,17 +15,31 @@ import { Router } from '@angular/router';
 })
 export class MenuPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storageService: StorageService) { }
 
-  ngOnInit() {
+
+  loginState = "Logout";
+
+  async loadStorageData() {
+    const login = await this.storageService.get('login');
+    if (login) {
+      this.loginState = "Logout";
+    }else{
+      this.loginState = "Login";
+    }
+  }
+
+
+  async ngOnInit() {
+    await this.loadStorageData()
   }
 
    goToIntro() {
     this.router.navigate(['/intro']);
   }
 
-  goToLogin() {
+  async goToLogin() {
+    await this.storageService.set('login', false)
     this.router.navigate(['/login']);
   }
-
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginPage implements OnInit {
   //Tarea: crear un nuevo guard para cuando intente entrar al home validar si estoy logueado
   
   loginForm: FormGroup;
-
+  validation: any;
   errorMessage: string = "";
 
 
@@ -46,9 +47,9 @@ export class LoginPage implements OnInit {
 
   
 
-validation: any;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController) {
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
         '',
@@ -79,6 +80,10 @@ validation: any;
     }).catch(error =>{
       this.errorMessage = error;
     })
+  }
+
+  goRegister() {
+    this.router.navigate(['/register']);
   }
 
 }

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
+import { MusicService } from '../services/music.service';
 
 @Component({
   selector: 'app-home',
@@ -38,9 +39,11 @@ export class HomePage implements OnInit {
     }
   ]
 
+  tracks: any;
+  albums: any;
 
 
-  constructor(private storageService: StorageService, private router: Router) {}
+  constructor(private storageService: StorageService, private router: Router, private musicService: MusicService ) {}
   // funciones, métodos
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
@@ -54,11 +57,38 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     await this.loadStorageData();
     this.simularCargaDatos();  // Simula la carga de datos al iniciar la página
+    //this.loadTracks(); // Carga las pistas al iniciar la página
+    this.loadAlbums(); // Carga los álbumes al iniciar la página
+  }
+
+
+
+  async loadTracks() {
+    return this.musicService.getTracks().then(tracks => {
+      this.tracks = tracks;
+      console.log('Tracks loaded:', this.tracks);
+      return tracks;
+    }).catch(error => {
+      console.error('Error loading tracks:', error);
+      throw error;
+    });
+  }
+
+  async loadAlbums() {
+    return this.musicService.getAlbums().then(albums => {
+      this.albums = albums;
+      console.log('Albums loaded:', this.albums);
+      return albums;
+    }).catch(error => {
+      console.error('Error loading albums:', error);
+      throw error;
+    });
   }
 
   temaMinimo = 'theme-minimal';
   temaNeon = 'theme-neon';
   temaActual: string = this.temaMinimo;
+  
   async toggleTheme() {
     this.temaActual = this.temaActual === this.temaMinimo ? this.temaNeon : this.temaMinimo;
     await this.storageService.set('theme', this.temaActual);
@@ -93,7 +123,7 @@ export class HomePage implements OnInit {
 //Fin promesas
 
 
-  // crear una funcion para ir a ver el intro
+  // crear una funcion para ir a ver el intro (se cambio en el video de menu)
   goToIntro() {
     console.log('Navigating to intro page');
     // Aquí se puede implementar la lógica para navegar a la página de introducción

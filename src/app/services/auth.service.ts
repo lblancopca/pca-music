@@ -9,10 +9,11 @@ export class AuthService {
 
   constructor(private storageService: StorageService, private router: Router) { }
 
-  loginUser(credentials: any){
+  async loginUser(credentials: any){
     
+    /*
     return new Promise((accept, reject) => {
-      if (credentials.email == "leonardo@gmail.com" && credentials.password == "123456") {
+      if (credentials.email == "admin@gmail.com" && credentials.password == "123456") {
         //Tarea: guardar en el storage logion: true si no, redireccionar a login
         this.storageService.set('login', true);
         accept("Login correcto")
@@ -22,5 +23,17 @@ export class AuthService {
         reject("Login incorrecto")
       }
     })
+      */
+
+    const users = await this.storageService.get('users') || [];
+    const user = users.find((u: any) => u.email === credentials.email && u.password === credentials.password);
+    if (user) {
+      this.storageService.set('login', true);
+      return Promise.resolve("Login correcto");
+    } else {
+      this.storageService.set('login', false);
+      this.router.navigate(['/login']);
+      return Promise.reject("Usuario o contraseña incorrecto");
+    }
   }
 }
