@@ -69,6 +69,11 @@
       <ion-button expand="full" shape="round" color="success" [disabled]="!registerForm.valid"  type="submit">
         Register
       </ion-button>
+
+      <ion-button expand="full" shape="round" color="medium" (click)="goToLogin()">
+        Go to Login
+      </ion-button>
+
     </form>
     {{errorMessage}}
     
