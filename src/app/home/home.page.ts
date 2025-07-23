@@ -2,12 +2,13 @@
 //import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MusicService } from '../services/music.service';
+import { SongsModalPage } from '../songs-modal/songs-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,7 @@ export class HomePage implements OnInit {
   albums: any;
 
 
-  constructor(private storageService: StorageService, private router: Router, private musicService: MusicService ) {}
+  constructor(private storageService: StorageService, private router: Router, private musicService: MusicService, private modalCtrl: ModalController) {}
   // funciones, métodos
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
@@ -126,7 +127,26 @@ export class HomePage implements OnInit {
   // crear una funcion para ir a ver el intro (se cambio en el video de menu)
   goToIntro() {
     console.log('Navigating to intro page');
-    // Aquí se puede implementar la lógica para navegar a la página de introducción
+    // ir a intro
     this.router.navigate(['/intro']);
   }
+
+
+  async showSongs(albumId: string) {
+    try {
+      console.log(`Album ID: ${albumId}`);
+      const songs = await this.musicService.getSongsByAlbum(albumId);
+      console.log(`Songs: ${albumId}:`, songs);
+      // modal
+      const modal = await this.modalCtrl.create({
+        component: SongsModalPage, 
+        componentProps: { songs: songs }
+      });
+      modal.present();
+    } catch (error) {
+      console.error('Error fetching songs by album:', error);
+    }
+  }
+
+  // crear una funcion showByArtist que abrira el modal ya creado y enviara a los porps las canciones del artista
 }

@@ -29,7 +29,7 @@
     slides-per-view="1"
    [ngClass]="temaActual">
 
-    <swiper-slide *ngFor="let albun of albums">
+    <swiper-slide *ngFor="let albun of albums" (click)="showSongs(albun.id)">
       <div class="slide-content">
         <h2> {{ albun.name }} </h2>
         <img [src]="albun.image" [alt]="albun.name">
@@ -37,4 +37,7 @@
       </div>
     </swiper-slide>
   </swiper-container>
+
+  <!-- Mostrar un wiper o lista de artistas del servidor y al darle clic muestre las cancines del artista -->
 </ion-content>
+ 
