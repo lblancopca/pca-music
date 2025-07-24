@@ -38,6 +38,20 @@
     </swiper-slide>
   </swiper-container>
 
+
+  
+
   <!-- Mostrar un wiper o lista de artistas del servidor y al darle clic muestre las cancines del artista -->
 </ion-content>
+
+
+
+<ion-footer>
+  <ion-text color="danger" *ngIf="!song.name">
+    <h2>Aqui aparece la cancion</h2>
+  </ion-text>
+  <ion-text color="primary" *ngIf="song.name">
+    <h2>{{ song.name }}</h2>
+  </ion-text>
+</ion-footer>
  

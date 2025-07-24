@@ -42,6 +42,12 @@ export class HomePage implements OnInit {
 
   tracks: any;
   albums: any;
+  song:any = {
+    name:'',
+    preview_url: '',
+    playing: false
+  };
+  currentSong: any;
 
 
   constructor(private storageService: StorageService, private router: Router, private musicService: MusicService, private modalCtrl: ModalController) {}
@@ -142,6 +148,12 @@ export class HomePage implements OnInit {
         component: SongsModalPage, 
         componentProps: { songs: songs }
       });
+      modal.onDidDismiss().then((result)=>{
+        if(result.data){
+          console.log("Cancion recibida ", result.data);
+          this.song = result.data;
+        }
+      })
       modal.present();
     } catch (error) {
       console.error('Error fetching songs by album:', error);
