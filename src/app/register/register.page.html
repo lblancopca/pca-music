@@ -14,11 +14,12 @@
       <ion-item>
         <ion-input label="First name" type="text" labelPlacement="stacked" placeholder="escribe tu nombre" formControlName="firstName"></ion-input>
       </ion-item>
-      <div>
+      <div class="form-error-messages">
         <ng-container *ngFor="let validation of validation_message.firstName">
-          <div *ngIf="(
-              registerForm.get('firstName')?.hasError(validation.type) && registerForm.get('firstName')?.dirty
-            )">
+          <div 
+            *ngIf="registerForm.get('firstName')?.hasError(validation.type) && registerForm.get('firstName')?.dirty"
+            [class.error-message]="registerForm.get('firstName')?.hasError(validation.type) && registerForm.get('firstName')?.dirty"
+          >
             {{ validation.message}}
           </div>
         </ng-container>
@@ -27,11 +28,12 @@
       <ion-item>
         <ion-input label="Last name" type="text" labelPlacement="stacked" placeholder="escribe tu apellido" formControlName="lastName"></ion-input>
       </ion-item>
-      <div>
+      <div class="form-error-messages">
         <ng-container *ngFor="let validation of validation_message.lastName">
-          <div *ngIf="(
-              registerForm.get('lastName')?.hasError(validation.type) && registerForm.get('lastName')?.dirty
-            )">
+          <div 
+            *ngIf="registerForm.get('lastName')?.hasError(validation.type) && registerForm.get('lastName')?.dirty"
+            [class.error-message]="registerForm.get('lastName')?.hasError(validation.type) && registerForm.get('lastName')?.dirty"
+          >
             {{ validation.message}}
           </div>
         </ng-container>
@@ -41,11 +43,12 @@
         <ion-input label="Email" type="email" labelPlacement="stacked" placeholder="escribe tu email" formControlName="email"></ion-input>
       </ion-item>
 
-      <div>
+      <div class="form-error-messages">
       <ng-container *ngFor="let validation of validation_message.email">
-        <div *ngIf="(
-            registerForm.get('email')?.hasError(validation.type) && registerForm.get('email')?.dirty
-          )">
+        <div 
+          *ngIf="registerForm.get('email')?.hasError(validation.type) && registerForm.get('email')?.dirty"
+          [class.error-message]="registerForm.get('email')?.hasError(validation.type) && registerForm.get('email')?.dirty"
+        >
           {{ validation.message}}
         </div>
       </ng-container>
@@ -56,11 +59,12 @@
         <ion-input label="Password" type="password" labelPlacement="stacked" formControlName="password"></ion-input>
       </ion-item>
 
-      <div>
+      <div class="form-error-messages">
       <ng-container *ngFor="let validation of validation_message.password">
-        <div *ngIf="(
-            registerForm.get('password')?.hasError(validation.type) && registerForm.get('password')?.dirty
-          )">
+        <div 
+          *ngIf="registerForm.get('password')?.hasError(validation.type) && registerForm.get('password')?.dirty"
+          [class.error-message]="registerForm.get('password')?.hasError(validation.type) && registerForm.get('password')?.dirty"
+        >
           {{ validation.message}}
         </div>
       </ng-container>
@@ -70,7 +74,7 @@
         Register
       </ion-button>
 
-      <ion-button expand="full" shape="round" color="medium" (click)="goToLogin()">
+      <ion-button expand="full" shape="round" color="dark" (click)="goToLogin()">
         Go to Login
       </ion-button>
 
@@ -78,3 +82,5 @@
     {{errorMessage}}
     
 </ion-content>
+
+

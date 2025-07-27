@@ -39,7 +39,9 @@ export class MenuPage implements OnInit {
   }
 
   async goToLogin() {
-    await this.storageService.set('login', false)
+    //borrar login del storage: OK
+    this.storageService.remove("login");
+    //Redireccionar a login: OK
     this.router.navigate(['/login']);
   }
 }
