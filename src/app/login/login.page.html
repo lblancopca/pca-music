@@ -24,25 +24,27 @@
     <!--Tarea: Darle estilo a como muetro el mensaje-->
     <div class="form-error-messages">
       <ng-container *ngFor="let validation of validation_message.email">
-        <div *ngIf="(
-            loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty
-          )">
+        <div 
+          [class.error-message]="loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty"
+      *ngIf="loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty"
+        >
           {{ validation.message}}
         </div>
       </ng-container>
     </div>
 
-    <!--Tarea: cambiar imput a password -->
-    <!--Tarea: Mostrar mensajes de error en el campo password -->
+    <!--Tarea: cambiar imput a password: OK -->
     <ion-item>
       <ion-input label="Password" type="password" value="password" labelPlacement="stacked" formControlName="password"></ion-input>
     </ion-item>
 
-    <div>
+    <!--Tarea: Mostrar mensajes de error en el campo password: OK -->
+    <div class="form-error-messages">
       <ng-container *ngFor="let validation of validation_message.password">
-        <div *ngIf="(
-            loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty
-          )">
+        <div 
+          [class.error-message]="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty"
+      *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty"
+        >
           {{ validation.message}}
         </div>
       </ng-container>

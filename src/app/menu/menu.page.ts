@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-//import { IonContent, IonHeader, IonTitle, IonToolbar, IonSplitPane } from '@ionic/angular/standalone';
 import { IonicModule } from "@ionic/angular";
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
@@ -35,6 +34,7 @@ export class MenuPage implements OnInit {
   }
 
    goToIntro() {
+    this.storageService.clear();
     this.router.navigate(['/intro']);
   }
 

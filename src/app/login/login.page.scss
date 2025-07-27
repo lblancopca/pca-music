@@ -1,7 +1,7 @@
 /* 
     Darle estilos a los messages
 */
-
+/*
 .profile-default-image img {
     border-radius: 50%;
     height: 100px;
@@ -19,5 +19,33 @@
   border-radius: 4px;
   font-weight: 500;
   transition: background-color 0.3s ease;
+}*/
+
+.form-error-messages {
+  margin: 4px 0 12px 8px;
+
+  .error-message {
+    color: #ff3b30;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    &::before {
+      content: '⚠️';
+      font-size: 16px;
+    }
+  }
 }
+
+.error-message {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
 

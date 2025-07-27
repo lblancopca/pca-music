@@ -47,7 +47,8 @@ export class HomePage implements OnInit {
     preview_url: '',
     playing: false
   };
-  currentSong: any;
+  currentSong: any = {};
+  newTime: any;
 
 
   constructor(private storageService: StorageService, private router: Router, private musicService: MusicService, private modalCtrl: ModalController) {}
@@ -158,6 +159,34 @@ export class HomePage implements OnInit {
     } catch (error) {
       console.error('Error fetching songs by album:', error);
     }
+  }
+
+  play(){
+    this.currentSong = new Audio(this.song.preview_url);
+    this.currentSong.play();
+    this.currentSong.addEventListener("timeupdate", ()=>{
+      this.newTime = this.currentSong.currentTime / this.currentSong.duration;
+    })
+    this.song.playing = true;
+  }
+
+  pause(){
+    this.currentSong.pause();
+    this.song.playing = false;
+  }
+
+  formatTime(seconds: number){
+    if(!seconds || isNaN(seconds)) return "0:00";
+    const minutes = Math.floor(seconds / 60)
+    const remainingSeconds = Math.floor(seconds % 60)
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+  }
+
+  getRemainingTime(){
+    if(!this.currentSong?.duration || !this.currentSong?.currentTime){
+      return 0
+    }
+    return this.currentSong.duration - this.currentSong.currentTime;
   }
 
   // crear una funcion showByArtist que abrira el modal ya creado y enviara a los porps las canciones del artista

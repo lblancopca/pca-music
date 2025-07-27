@@ -24,7 +24,7 @@
       loop="true" 
       slides-per-view="1">
 
-      <swiper-slide *ngFor="let genre of genres">
+      <swiper-slide *ngFor="let genre of genres" class="ion-text-center">
         <div class="slide-content">
           <img [src]="genre.image" alt="">
           <h2>{{ genre.title }}</h2>

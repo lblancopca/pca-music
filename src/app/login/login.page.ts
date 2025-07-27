@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class LoginPage implements OnInit {
-  //Tarea: crear un nuevo guard para cuando intente entrar al home validar si estoy logueado
+  //Tarea: crear un nuevo guard para cuando intente entrar al home validar si estoy logueado: OK
   
   loginForm: FormGroup;
   validation: any;
   errorMessage: string = "";
 
 
-// Tarea: añadir las validacione al campo password
+// Tarea: añadir las validacione al campo password: OK
   validation_message = {
     email: [
       {
@@ -37,17 +37,12 @@ export class LoginPage implements OnInit {
         type: "required", message: "El campo password es obligatorio."
       },
       {
-        type: "email", message: "contraseña incorrecta incorrecto."
-      },
-      {
-        type: "email", message: "Minimo seis caracteres."
+        type: "minlength", message: "Minimo seis caracteres."
       }
     ]
   }
 
   
-
-
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController, private router: Router) {
     this.loginForm = this.formBuilder.group({

@@ -18,10 +18,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 export class IntroPage implements OnInit {
 
 
-  //organizar intro con slides dinamicos (Minimo 4)
-  //utilizas variables de clases
-  // utilizar css utilities
-  //utilizar un boton que nos leve al home
+  //organizar intro con slides dinamicos (Minimo 4): OK
+  //utilizas variables de clases: OK
+  // utilizar css utilities: OK
+  //utilizar un boton que nos leve al home: OK
 
 
   genres = [
@@ -60,7 +60,7 @@ export class IntroPage implements OnInit {
   }
 
   async loadStorageData() {
-    // guardar que ya se ha visto la intro
+    // guardar que ya se ha visto la intro: OK
     await this.storageService.set('introSeen', true);
     console.log('Pagina intro visitada');
   }

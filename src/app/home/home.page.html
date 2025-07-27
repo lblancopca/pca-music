@@ -23,35 +23,75 @@
 <ion-content >
 
 
-  <swiper-container 
-    pagination="true" 
-    loop="true" 
-    slides-per-view="1"
-   [ngClass]="temaActual">
+  <div>
+    <h2>Albuns</h2>
+    <swiper-container 
+      pagination="true" 
+      loop="true" 
+      slides-per-view="3"
+    [ngClass]="temaActual">
 
-    <swiper-slide *ngFor="let albun of albums" (click)="showSongs(albun.id)">
-      <div class="slide-content">
-        <h2> {{ albun.name }} </h2>
-        <img [src]="albun.image" [alt]="albun.name">
-        <p>{{ albun.description }}</p>
-      </div>
-    </swiper-slide>
-  </swiper-container>
+      <swiper-slide *ngFor="let albun of albums" (click)="showSongs(albun.id)">
+        <div class="slide-content">
+          <h2 class="ion-text-capitalize"> {{ albun.name }} </h2>
+          <img [src]="albun.image" [alt]="albun.name">
+          <p>{{ albun.description }}</p>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
 
-
-  
+    
 
   <!-- Mostrar un wiper o lista de artistas del servidor y al darle clic muestre las cancines del artista -->
+   <div>
+    <h2>Artist</h2>
+    <swiper-container 
+      pagination="true" 
+      loop="true" 
+      slides-per-view="3"
+    [ngClass]="temaActual">
+      <h2>Pendiente</h2>
+    </swiper-container>
+  </div>
 </ion-content>
 
 
 
-<ion-footer>
+<ion-footer >
+  <!--
   <ion-text color="danger" *ngIf="!song.name">
     <h2>Aqui aparece la cancion</h2>
   </ion-text>
   <ion-text color="primary" *ngIf="song.name">
     <h2>{{ song.name }}</h2>
   </ion-text>
+
+  -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-start">{{ formatTime(currentSong?.currentTime) || "0:00"}}</ion-col>
+    <ion-col class="ion-text-end">{{ formatTime(getRemainingTime()) || "0:00" }}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-progress-bar [value]="newTime || 0"> </ion-progress-bar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1">
+        <ion-icon name="heart"></ion-icon>
+      </ion-col>
+
+      <ion-col size="10">
+        <ion-text>{{ song.name || "N/A" }}</ion-text>
+      </ion-col>
+      <ion-col size="1">
+        <ion-icon name="play" *ngIf="!song.playing" (click)="play()"></ion-icon>
+        <ion-icon name="pause" *ngIf="song.playing" (click)="pause()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>
  
