@@ -223,7 +223,7 @@ export class HomePage implements OnInit {
     this.song.playing = false;
   }
 
-
+  //Agregar funcionalidad para marcar o desmarcar una canción como favorita desde la interfaz. :OK
   async like(trackId: number) {
     const user = await this.storageService.get('user');
       if (!this.song || typeof this.song.id === 'undefined') {
@@ -245,7 +245,7 @@ export class HomePage implements OnInit {
         const res = await this.musicService.setFavoriteTrack(user.user.id, trackId);
         console.log('Track agregado a favoritos:', res);
         this.isFavorite = true;
-        this.favoriteId = res.id; // suponiendo que el backend devuelve el ID del favorito
+        this.favoriteId = res.id;
       } catch (error) {
         console.error('Error al agregar a favoritos:', error);
       }
@@ -275,7 +275,7 @@ export class HomePage implements OnInit {
 
 
 
-  
+  //Mostrar el icono de "❤️" si la canción no está en favoritos, y un icono de "❌" (dejar de seguir) si ya lo está.
   async checkIfFavorite(trackId: number) {
     try {
       const userData = await this.storageService.get('user');
