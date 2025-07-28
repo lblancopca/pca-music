@@ -63,6 +63,26 @@
 
     </swiper-container>
   </div>
+
+
+
+  <!--Lista canciones añadidas a favoritos-->
+  <div>
+    <h2 class="ion-text-center">Favorites music</h2>
+    <swiper-container 
+      pagination="true" 
+      loop="true" 
+      slides-per-view="3"
+    [ngClass]="temaActual">
+      
+      <swiper-slide *ngFor="let favorite of favorite_tracks" (click)="loadFavoritesTrack()">
+        <div class="slide-content">
+          <h2>En construccion</h2>
+        </div>
+      </swiper-slide>
+
+    </swiper-container>
+  </div>
 </ion-content>
 
 
@@ -91,7 +111,9 @@
     <ion-row>
       <ion-col size="1">
         <!--Darle funcion a favorito -->
-        <ion-icon color="danger" name="heart"></ion-icon>
+        <ion-icon *ngIf="isFavorite" color="danger" name="heart" (click)="disLike(song.id)"></ion-icon>
+        <ion-icon *ngIf="!isFavorite" name="heart-outline" (click)="like(song.id)"></ion-icon>
+
       </ion-col>
 
       <ion-col size="10">

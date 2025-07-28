@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { MusicService } from '../services/music.service';
 import { SongsModalPage } from '../songs-modal/songs-modal.page';
+import { codeSlashOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -50,6 +51,9 @@ export class HomePage implements OnInit {
   };
   currentSong: any = {};
   newTime: any;
+  isFavorite: any;
+  favoriteId:any;
+
 
 
   constructor(private storageService: StorageService, private router: Router, private musicService: MusicService, private modalCtrl: ModalController) {}
@@ -69,6 +73,10 @@ export class HomePage implements OnInit {
     //this.loadTracks(); // Carga las pistas al iniciar la página
     this.loadAlbums(); // Carga los álbumes al iniciar la página
     this.loadArtists() // carga los artistas al iniciar
+
+    if (this.song && this.song.id) {
+      this.checkIfFavorite(this.song.id);
+    }
   }
 
 
@@ -188,6 +196,8 @@ export class HomePage implements OnInit {
         if (result.data) {
           console.log("Canción recibida:", result.data);
           this.song = result.data;
+          //valida si es favorito
+          this.checkIfFavorite(this.song.id);
         }
       });
 
@@ -212,6 +222,88 @@ export class HomePage implements OnInit {
     this.currentSong.pause();
     this.song.playing = false;
   }
+
+
+  async like(trackId: number) {
+    const user = await this.storageService.get('user');
+      if (!this.song || typeof this.song.id === 'undefined') {
+        console.log("No hay canción disponible");
+        return;
+      }
+      
+    if (!user) {
+      console.error('Usuario no logueado');
+      return;
+    }
+
+
+    // Validamos antes de intentar agregar
+    await this.checkIfFavorite(trackId);
+
+    if (!this.isFavorite) {
+      try {
+        const res = await this.musicService.setFavoriteTrack(user.user.id, trackId);
+        console.log('Track agregado a favoritos:', res);
+        this.isFavorite = true;
+        this.favoriteId = res.id; // suponiendo que el backend devuelve el ID del favorito
+      } catch (error) {
+        console.error('Error al agregar a favoritos:', error);
+      }
+    }
+  }
+
+  async disLike(trackId: number) {
+    const user = await this.storageService.get('user');
+    if (!user) {
+      console.error('Usuario no logueado');
+      return;
+    }
+
+    if (this.isFavorite && this.favoriteId) {
+      try {
+        await this.musicService.removeFavoriteTrack(this.favoriteId);
+        this.isFavorite = false;
+        this.favoriteId = null;
+        console.log('Track eliminado de favoritos');
+      } catch (error) {
+        console.error('Error al eliminar de favoritos:', error);
+      }
+    }
+  }
+
+
+
+
+
+  
+  async checkIfFavorite(trackId: number) {
+    try {
+      const userData = await this.storageService.get('user');
+      if (!userData?.user?.id) {
+        this.isFavorite = false;
+        return;
+      }
+
+      const userId = userData.user.id;
+
+      const favorites = await this.musicService.getAllFavorites();
+
+      const foundFavorite = favorites.find((fav: any) =>
+        fav.user_id === userId && fav.track_id === trackId
+      );
+
+      this.isFavorite = !!foundFavorite;
+      this.favoriteId = foundFavorite?.id || null;
+
+      console.log(`¿Track ${trackId} es favorito?`, this.isFavorite);
+    } catch (error) {
+      console.error('Error al verificar si es favorito:', error);
+      this.isFavorite = false;
+      this.favoriteId = null;
+    }
+  }
+
+
 
   formatTime(seconds: number){
     if(!seconds || isNaN(seconds)) return "0:00";
@@ -238,4 +330,21 @@ export class HomePage implements OnInit {
       throw error;
     });
   }
+
+
+  //Pendiente
+  favorite_tracks:any;
+  async loadFavoritesTrack() {
+    const userID = await this.storageService.get('userID');
+    return this.musicService.getFavoriteTracks(userID.user.id).then(favorite_tracks => {
+      this.artists = favorite_tracks;
+      //console.log('artists loaded:', this.artists);
+      return favorite_tracks;
+    }).catch(error => {
+      console.error('Error loading artists:', error);
+      throw error;
+    });
+  }
+
+
 }
