@@ -42,6 +42,7 @@ export class HomePage implements OnInit {
 
   tracks: any;
   albums: any;
+  artists: any;
   song:any = {
     name:'',
     preview_url: '',
@@ -67,6 +68,7 @@ export class HomePage implements OnInit {
     this.simularCargaDatos();  // Simula la carga de datos al iniciar la página
     //this.loadTracks(); // Carga las pistas al iniciar la página
     this.loadAlbums(); // Carga los álbumes al iniciar la página
+    this.loadArtists() // carga los artistas al iniciar
   }
 
 
@@ -85,7 +87,7 @@ export class HomePage implements OnInit {
   async loadAlbums() {
     return this.musicService.getAlbums().then(albums => {
       this.albums = albums;
-      console.log('Albums loaded:', this.albums);
+      //console.log('Albums loaded:', this.albums);
       return albums;
     }).catch(error => {
       console.error('Error loading albums:', error);
@@ -96,11 +98,13 @@ export class HomePage implements OnInit {
   temaMinimo = 'theme-minimal';
   temaNeon = 'theme-neon';
   temaActual: string = this.temaMinimo;
+  themaActivade: any;
   
   async toggleTheme() {
     this.temaActual = this.temaActual === this.temaMinimo ? this.temaNeon : this.temaMinimo;
     await this.storageService.set('theme', this.temaActual);
-    console.log('Tema guardado:', this.temaActual);
+    //console.log('Tema guardado:', this.temaActual);
+    this.themaActivade = this.temaActual === this.temaMinimo ? false : true;
   }
 
   async loadStorageData() {
@@ -138,7 +142,7 @@ export class HomePage implements OnInit {
     this.router.navigate(['/intro']);
   }
 
-
+/*
   async showSongs(albumId: string) {
     try {
       console.log(`Album ID: ${albumId}`);
@@ -159,7 +163,41 @@ export class HomePage implements OnInit {
     } catch (error) {
       console.error('Error fetching songs by album:', error);
     }
+  }*/
+
+  async showSongs(id: string, type: 'album' | 'artist') {
+    try {
+      console.log(`${type === 'album' ? 'Album ID' : 'Artist ID'}: ${id}`);
+
+      let songs = [];
+
+      if (type === 'album') {
+        songs = await this.musicService.getSongsByAlbum(id);
+      } else if (type === 'artist') {
+        songs = await this.musicService.getSongsByArtist(id);
+      }
+
+      console.log(`Songs (${type}):`, songs);
+
+      const modal = await this.modalCtrl.create({
+        component: SongsModalPage,
+        componentProps: { songs }
+      });
+
+      modal.onDidDismiss().then((result) => {
+        if (result.data) {
+          console.log("Canción recibida:", result.data);
+          this.song = result.data;
+        }
+      });
+
+      await modal.present();
+
+    } catch (error) {
+      console.error(`Error fetching songs by ${type}:`, error);
+    }
   }
+
 
   play(){
     this.currentSong = new Audio(this.song.preview_url);
@@ -189,5 +227,15 @@ export class HomePage implements OnInit {
     return this.currentSong.duration - this.currentSong.currentTime;
   }
 
-  // crear una funcion showByArtist que abrira el modal ya creado y enviara a los porps las canciones del artista
+  // crear una funcion showByArtist que abrira el modal ya creado y enviara a los props las canciones del artista
+  async loadArtists() {
+    return this.musicService.getArtists().then(artists => {
+      this.artists = artists;
+      //console.log('artists loaded:', this.artists);
+      return artists;
+    }).catch(error => {
+      console.error('Error loading artists:', error);
+      throw error;
+    });
+  }
 }

@@ -29,7 +29,7 @@ export class MusicService {
         throw error;
       });
 
-      console.log('Fetching albums from:', this.urlServer);
+      //console.log('Fetching albums from:', this.urlServer);
   }
 
   getSongsByAlbum(albumId: string) {
@@ -40,10 +40,31 @@ export class MusicService {
         throw error;
       });
 
-      console.log(`Fetching songs for album ID: ${albumId} from`, this.urlServer);
+      //console.log(`Fetching songs for album ID: ${albumId} from`, this.urlServer);
   }
 
-  //crear un servicio para optener los artistas desde el servidor api
-  //Crear un servicio para optener las canciones de un artista desde el servidor api /tracks/artist/1
+  //crear un servicio para optener los artistas desde el servidor api: OK
+
+  getArtists() {
+    return fetch(`${this.urlServer}/artists`)
+      .then(response => response.json())
+      .catch(error => {
+        console.error('Error fetching artists:', error);
+        throw error;
+      });
+
+      console.log('Fetching artists from:', this.urlServer);
+  }
+  //Crear un servicio para optener las canciones de un artista desde el servidor api /tracks/artist/1: OK
+  getSongsByArtist(artistId: string) {
+    return fetch(`${this.urlServer}/tracks/artist/${artistId}`)
+      .then(response => response.json())
+      .catch(error => {
+        console.error('Error fetching songs by artist:', error);
+        throw error;
+      });
+
+      //console.log(`Fetching songs for artist ID: ${albumId} from`, this.urlServer);
+  }
   
 }

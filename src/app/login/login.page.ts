@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, F
 import { IonicModule, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { StorageService } from '../services/storage.service';
+
 
 
 @Component({
@@ -44,7 +46,13 @@ export class LoginPage implements OnInit {
 
   
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService, 
+    private navCtrl: NavController, 
+    private router: Router,
+    private storageService: StorageService
+  ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl(
         '',
@@ -66,15 +74,35 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-
+  //login con datos del storage
   loginUser(credentials: any){
     console.log(credentials);
+    
     this.authService.loginUser(credentials).then(res => {
       this.errorMessage = "";
       this.navCtrl.navigateForward("/menu/home")
     }).catch(error =>{
       this.errorMessage = error;
-    })
+    })      
+  }
+
+  //login con la api
+ loginUserApi(credentials: any) {
+    console.log('Enviando credenciales:', credentials);
+
+    this.authService.loginUser(credentials)
+      .then(async res => {
+        console.log('Login exitoso:', res);
+        await this.storageService.set('user', res);
+        this.errorMessage = "";
+        console.log('Navegando a /menu/home');
+        this.navCtrl.navigateForward("/menu/home")
+      })
+      .catch(error => {
+        console.error('Login fallido:', error);
+        console.error('Error en login:', error);
+        this.errorMessage = "Credenciales inválidas o error de conexión";
+      });
   }
 
   goRegister() {

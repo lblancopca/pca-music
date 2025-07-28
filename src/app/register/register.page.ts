@@ -19,11 +19,11 @@ export class RegisterPage implements OnInit {
   errorMessage: string = "";
 
   validation_message = {
-    firstName: [
+    name: [
       { type: "required", message: "El campo nombre es obligatorio." },
       { type: "minlength", message: "El nombre debe tener al menos 3 caracteres." }
     ],
-    lastName: [
+    last_name: [
       { type: "required", message: "El campo apellido es obligatorio." },
       { type: "minlength", message: "El apellido debe tener al menos 3 caracteres." }
     ],
@@ -34,26 +34,17 @@ export class RegisterPage implements OnInit {
     password: [
       { type: "required", message: "El campo password es obligatorio." },
       { type: "minlength", message: "La contraseña debe tener al menos 6 caracteres." }
+    ],
+    password_confirmation: [
+      { type: "required", message: "El campo es obligatorio." },
+      { type: "minlength", message: "La contraseña debe tener al menos 6 caracteres." }
     ]
   };
 
 
   constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router) { 
     this.registerForm = this.formBuilder.group({
-      firstName: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3)
-        ])
-      ),
-      lastName: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3)
-        ])
-      ),
+      
       email: new FormControl(
         '',
         Validators.compose([
@@ -67,6 +58,27 @@ export class RegisterPage implements OnInit {
           Validators.required,
           Validators.minLength(6)
         ])
+      ),
+      password_confirmation: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6)
+        ])
+      ),
+      name: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3)
+        ])
+      ),
+      last_name: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3)
+        ])
       )
     });
   }
@@ -74,9 +86,21 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  /*
   registerUser(dataUser: any) {
     console.log(dataUser);
     this.registerService.registerUser(dataUser).then(res => {
+      this.errorMessage = "";
+      this.router.navigate(['/login']);
+    }).catch(error => {
+      this.errorMessage = error;
+    });
+  }
+    */
+
+  registerUser(dataUser: any) {
+    console.log(dataUser);
+    this.registerService.registerUserByApi(dataUser).then(res => {
       this.errorMessage = "";
       this.router.navigate(['/login']);
     }).catch(error => {

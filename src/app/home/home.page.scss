@@ -44,66 +44,67 @@
 }*/
 
 
+/* === THEME NEON === */
 .theme-neon .slide-content {
   background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
-  border: 1px solid --ion-color-primary;
+  border: 1px solid var(--ion-color-primary);
   border-radius: 10px;
   padding: 10%;
   text-align: center;
-  color: --ion-color-primary;
-  box-shadow: 0 0 20px --ion-color-primary;
+  color: var(--ion-color-primary);
+  box-shadow: 0 0 20px var(--ion-color-primary);
 }
 
 .theme-neon .slide-content h2 {
   font-family: 'Orbitron', sans-serif;
   font-size: 18px;
   margin-bottom: 1rem;
-  color: --ion-color-secondary;
+  color: var(--ion-color-secondary);
 }
 
 .theme-neon .slide-content img {
-  max-width: 100%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 10px;
-  border: 2px solid --ion-color-secondary;
+  border: 2px solid var(--ion-color-secondary);
   margin-bottom: 1rem;
 }
 
 .theme-neon .slide-content p {
   font-size: 1rem;
-  color: --ion-text-color;
+  color: var(--ion-text-color);
 }
 
 
-/*Minimalista claro*/
-/*.theme-minimal swiper-container {
-  background: #f8f9fa;
-  padding: 1rem;
-}*/
-
+/* === THEME MINIMAL === */
 .theme-minimal .slide-content {
-  background: --background-color;
-  border: 1px solid --border-color;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 10%;
   text-align: center;
   color: #333;
-  box-shadow: 0 2px 8px --shadow-color;
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .theme-minimal .slide-content h2 {
   font-family: 'Segoe UI', sans-serif;
   font-size: 18px;
-  color: --ion-color-dark;
+  color: var(--ion-color-dark);
   margin-bottom: 1rem;
 }
 
 .theme-minimal .slide-content img {
-  max-width: 100%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 6px;
   margin-bottom: 1rem;
 }
 
 .theme-minimal .slide-content p {
   font-size: 0.95rem;
-  color: --ion-text-color-muted;
+  color: var(--ion-text-color-muted);
 }
+

@@ -16,7 +16,7 @@
     <img src="assets/images/user.png">
   </figure>
 
-  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUserApi(loginForm.value)">
     <ion-item>
       <ion-input label="Email" type="email" labelPlacement="stacked" placeholder="escribe tu email" formControlName="email"></ion-input>
     </ion-item>
@@ -43,7 +43,7 @@
       <ng-container *ngFor="let validation of validation_message.password">
         <div 
           [class.error-message]="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty"
-      *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty"
+        *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty"
         >
           {{ validation.message}}
         </div>
@@ -56,7 +56,10 @@
       Login
     </ion-button>
   </form>
-  {{errorMessage}}
+  <div class="error-user" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
   
 
 </ion-content>
